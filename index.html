@@ -96,6 +96,13 @@
         .float-anim {
             animation: float 6s ease-in-out infinite;
         }
+
+        /* Estilo da Logo Imagem */
+        .logo-img {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+            mix-blend-mode: multiply;
+            /* Ajuda a integrar se o fundo do PNG não for transparente */
+        }
     </style>
 </head>
 
@@ -109,16 +116,13 @@
     <nav class="fixed w-full z-50 nav-glass">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="flex justify-between h-24 items-center">
-                <!-- Brand -->
+                <!-- Brand / Logo no Header -->
                 <div class="flex items-center gap-4 group cursor-pointer"
                     onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                    <div class="w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-sm">
-                        <svg viewBox="0 0 100 100" class="w-10 h-10">
-                            <path d="M50 80 Q 48 55 50 25" stroke="#5D4037" stroke-width="3" fill="none" />
-                            <circle cx="45" cy="35" r="12" fill="var(--brand-turquoise)" fill-opacity="0.6" />
-                            <circle cx="58" cy="38" r="10" fill="var(--brand-lilac)" fill-opacity="0.6" />
-                            <circle cx="52" cy="45" r="14" fill="var(--brand-blue)" fill-opacity="0.6" />
-                        </svg>
+                    <div
+                        class="w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-sm overflow-hidden p-1">
+                        <!-- Imagem da Logo Miniatura -->
+                        <img src="logoVivi.png" alt="Logo Viviane Reis" class="w-full h-full object-contain logo-img">
                     </div>
                     <div class="flex flex-col">
                         <span class="text-3xl font-cursive leading-none text-[#2E4D68]">Viviane Reis</span>
@@ -184,33 +188,16 @@
                 </div>
             </div>
 
-            <!-- Logo Aguarela Central -->
+            <!-- IMAGEM DA LOGO GRANDE -->
             <div class="relative flex justify-center float-anim">
-                <div class="w-full max-w-lg aspect-square relative flex items-center justify-center">
+                <div class="w-full max-w-md aspect-square relative flex items-center justify-center">
+                    <!-- Manchas de aguarela no fundo para integrar a imagem -->
                     <div class="absolute inset-0 bg-[#40E0D0]/10 rounded-full blur-[100px]"></div>
                     <div class="absolute inset-10 bg-[#C8A2C8]/10 rounded-full blur-[80px]"></div>
 
-                    <svg viewBox="0 0 200 200" class="w-full h-full relative z-10">
-                        <path d="M100 165 Q 96 120 100 50" stroke="#5D4037" stroke-width="5" fill="none"
-                            stroke-linecap="round" />
-                        <path d="M100 120 Q 140 100 160 125" stroke="#5D4037" stroke-width="2" fill="none"
-                            opacity="0.3" />
-                        <path d="M100 100 Q 60 80 40 105" stroke="#5D4037" stroke-width="2" fill="none" opacity="0.3" />
-
-                        <g filter="url(#watercolor-blur)">
-                            <circle cx="85" cy="65" r="28" fill="var(--brand-turquoise)" fill-opacity="0.45" />
-                            <circle cx="120" cy="70" r="25" fill="var(--brand-lilac)" fill-opacity="0.45" />
-                            <circle cx="100" cy="90" r="32" fill="var(--brand-blue)" fill-opacity="0.45" />
-                            <circle cx="70" cy="100" r="22" fill="var(--brand-olive)" fill-opacity="0.35" />
-                            <circle cx="135" cy="105" r="22" fill="var(--brand-turquoise)" fill-opacity="0.35" />
-                        </g>
-
-                        <defs>
-                            <filter id="watercolor-blur">
-                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
-                            </filter>
-                        </defs>
-                    </svg>
+                    <!-- Imagem Oficial logoVivi.png -->
+                    <img src="logoVivi.png" alt="Logo Viviane Reis - Oliveira Aquarelada"
+                        class="w-full h-full object-contain relative z-10 logo-img">
                 </div>
             </div>
         </div>
@@ -327,12 +314,16 @@
     <footer class="py-16 border-t border-gray-100 text-center watercolor-bg">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="flex flex-col items-center gap-4 mb-10">
+                <!-- Logo Footer -->
+                <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 p-1">
+                    <img src="logoVivi.png" alt="Logo Viviane Reis" class="w-full h-full object-contain">
+                </div>
                 <span class="text-4xl font-cursive text-[#2E4D68]">Viviane Reis</span>
                 <span class="text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400">Desenvolvimento Humano &
                     Neurociência</span>
             </div>
 
-            <!-- Contact Info visibly in footer -->
+            <!-- Contact Info -->
             <div class="grid md:grid-cols-3 gap-8 text-sm text-gray-500 mb-12">
                 <div class="flex flex-col items-center gap-2">
                     <i data-lucide="map-pin" class="text-[#40E0D0]"></i>
@@ -356,8 +347,6 @@
                         data-lucide="message-circle"></i></a>
             </div>
 
-            <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase mb-2">CRP: 00/00000 (Inclua o seu
-                aqui)</p>
             <p class="text-xs text-gray-300 font-bold tracking-widest uppercase">© 2024 Viviane Reis. Todos os direitos
                 reservados.</p>
         </div>
@@ -379,7 +368,7 @@
         mobileBtn.addEventListener('click', toggleNav);
         closeBtn.addEventListener('click', toggleNav);
 
-        // Smooth scroll for anchors
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
